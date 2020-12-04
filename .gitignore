@@ -1,4 +1,4 @@
-new-client/node_modules
+client/node_modules
 comments/node_modules
 event-bus/node_modules
 moderation/node_modules
