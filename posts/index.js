@@ -1,18 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const morgan = require("morgan");
 const { randomBytes } = require("crypto");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(morgan("tiny"));
 
 const posts = {};
 
 app.get("/posts", (req, res) => res.send(posts));
 
-app.post("/posts", async (req, res) => {
+app.post("/posts/create", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { title } = req.body;
   posts[id] = { id, title };
@@ -32,4 +34,7 @@ app.post("/events", async (req, res) => {
   return res.send({});
 });
 
-app.listen(4000, () => console.log("posts on 4000"));
+app.listen(4000, () => {
+  console.log("v1");
+  console.log("posts on 4000");
+});

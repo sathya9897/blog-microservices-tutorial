@@ -2,12 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const { randomBytes } = require("crypto");
+const morgan = require("morgan");
 const { stat } = require("fs");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(morgan("tiny"));
 
 const commentsByPostId = {};
 
